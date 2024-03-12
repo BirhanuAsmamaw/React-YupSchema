@@ -1,12 +1,17 @@
 import './App.css';
-import * as yup from 'yup';
 import { userSchema } from './Validations/UserValidation';
 
 function App() {
 
-  const createUser = (event) =>{
-    
-  }
+  const createUser = async (event) =>{
+    event.preventDefault()  // not to refresh when we click the submit button
+    let formData = {       
+      name: event.target[0].value, //this will return the value for the first input
+      email: event.target[1].value,
+      password: event.target[2].value,
+    };
+     const isValid = await userSchema.isValid(formData)
+  };
 
   return (
     <div className="App">
